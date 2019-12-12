@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="ForgetMeNot.App.Views.HomePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:ForgetMeNot.App.Models"
+    xmlns:viewmodels="clr-namespace:ForgetMeNot.App.ViewModels"
+    Title="ForgetMeNot"
+    x:DataType="viewmodels:CategoryViewModel"
+    mc:Ignorable="d">
+    <d:ContentPage.BindingContext>
+        <viewmodels:CategoryViewModel IsBusy="True">
+            <x:Arguments>
+                <x:Boolean>false</x:Boolean>
+            </x:Arguments>
+        </viewmodels:CategoryViewModel>
+    </d:ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Margin="10" 
+                   Text="{Binding CategoriesCount,
+                          StringFormat='{0} categories'}"
+                   d:Text="3 categories"
+                   d:BackgroundColor="Orange"
+                   />
+            <ListView
+                Grid.Row="1"
+                HasUnevenRows="true"
+                IsGroupingEnabled="false"
+                d:IsGroupingEnabled="false"
+                ItemSelected="Handle_ItemSelected"
+                ItemTapped="Handle_ItemTapped"
+                ItemsSource="{Binding FriendCategories}">
+                <d:ListView.ItemsSource>
+                    <x:Array Type="{x:Type models:FriendCategory}">
+                        <models:FriendCategory Name="Dog" Type="dog"/>
+                    </x:Array>
+                </d:ListView.ItemsSource>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="models:FriendCategory">
+                        <ViewCell>
+                            <Grid
+                                Padding="10"
+                                ColumnSpacing="10"
+                                RowSpacing="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <controls:CircleImage
+                                    Aspect="AspectFill"
+                                    BorderColor="Black"
+                                    BorderThickness="3"
+                                    HeightRequest="66"
+                                    HorizontalOptions="CenterAndExpand"
+                                    Source="{Binding Image}"
+                                    VerticalOptions="CenterAndExpand"
+                                    WidthRequest="66" />
+                                <StackLayout Grid.Column="1" VerticalOptions="Center">
+                                    <Label Text="{Binding Name}" />
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ActivityIndicator 
+                Grid.RowSpan="2"
+                IsVisible="{Binding IsBusy}"
+                IsRunning="{Binding IsBusy}"
+                d:IsRunning="True"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

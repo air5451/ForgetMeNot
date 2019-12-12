@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="ForgetMeNot.App.Views.FriendsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:ForgetMeNot.App.Models"
+    xmlns:viewmodels="clr-namespace:ForgetMeNot.App.ViewModels"
+    Title="ForgetMeNot"
+    x:DataType="viewmodels:FriendsViewModel"
+    mc:Ignorable="d">
+    <d:ContentPage.BindingContext>
+        <viewmodels:FriendsViewModel IsBusy="True">
+            <x:Arguments>
+                <x:Boolean>false</x:Boolean>
+            </x:Arguments>
+        </viewmodels:FriendsViewModel>
+    </d:ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Margin="10" 
+                   Text="{Binding FriendsCount,
+                          StringFormat='{0} friends near you'}"
+                   d:Text="3 Monkeys"
+                   d:BackgroundColor="Orange"
+                   />
+            <ListView
+                Grid.Row="1"
+                GroupDisplayBinding="{Binding Key}"
+                GroupShortNameBinding="{Binding Key}"
+                HasUnevenRows="true"
+                IsGroupingEnabled="true"
+                d:IsGroupingEnabled="false"
+                ItemSelected="Handle_ItemSelected"
+                ItemTapped="Handle_ItemTapped"
+                ItemsSource="{Binding FriendsGrouped}">
+                <d:ListView.ItemsSource>
+                    <x:Array Type="{x:Type models:Friend}">
+                        <models:Friend Name="Jonny" Location="Redmond, WA 98052"/>
+                    </x:Array>
+                </d:ListView.ItemsSource>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Friend">
+                        <ViewCell>
+                            <Grid
+                                Padding="10"
+                                ColumnSpacing="10"
+                                RowSpacing="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <controls:CircleImage
+                                    Aspect="AspectFill"
+                                    BorderColor="Black"
+                                    BorderThickness="3"
+                                    HeightRequest="66"
+                                    HorizontalOptions="CenterAndExpand"
+                                    Source="{Binding Image}"
+                                    VerticalOptions="CenterAndExpand"
+                                    WidthRequest="66" />
+                                <StackLayout Grid.Column="1" VerticalOptions="Center">
+                                    <Label Text="{Binding Name}" />
+                                    <Label Text="{Binding Location}" />
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ActivityIndicator 
+                Grid.RowSpan="2"
+                IsVisible="{Binding IsBusy}"
+                IsRunning="{Binding IsBusy}"
+                d:IsRunning="True"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

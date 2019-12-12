@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		x:Class="ForgetMeNot.App.Views.DetailsPage"
+        xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+        Title="{Binding Friend.Name}">
+    <ContentPage.Content>
+		<ScrollView>
+    		<StackLayout Padding="10">
+                <controls:CircleImage 
+                        BorderColor="Aqua"
+                        BorderThickness="3"
+                        HeightRequest="200"
+                        WidthRequest="200"
+                        HorizontalOptions="CenterAndExpand"
+                        Aspect="AspectFill"
+                        Source="{Binding Friend.Image}"/>
+                <Label Text="{Binding Friend.Name}" FontAttributes="Bold"/>
+                <Label Text="{Binding Friend.Location}" FontSize="Micro"/>
+                <Label Text="{Binding Friend.Details}" FontSize="Large"/>
+                <Label Text="{Binding Friend.Published}" FontSize="Micro"/>
+            </StackLayout>
+		</ScrollView>
+    </ContentPage.Content>
+</ContentPage>
