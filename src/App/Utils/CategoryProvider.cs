@@ -1,16 +1,35 @@
-﻿using ForgetMeNot.App.Api.Types;
+﻿using Akavache;
+using ForgetMeNot.App.Api.Types;
 using ForgetMeNot.App.Models;
 using Newtonsoft.Json;
 using RestSharp;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reactive.Linq;
+using System.Threading.Tasks;
 
 namespace ForgetMeNot.App.Utils
 {
     public class CategoryProvider
     {
+        private static readonly string cacheKey = "FriendCategories";
+
         public static ObservableCollection<FriendCategory> GetFriendCategories(string token)
         {
+            try
+            {
+                Task<FriendCategory[]> getCategoryTask = Task.Run(() => CheckCacheAsync(cacheKey));
+                getCategoryTask.Wait();
+                FriendCategory[] result = getCategoryTask.Result;
+
+                if (result != null)
+                {
+                    return new ObservableCollection<FriendCategory>(result);
+                }
+            }
+            catch (Exception) { }
+
             var baseUrl = ConfigStore.PetFinderApiBaseUrl;
             var relativeUrl = $"/v2/types";
 
@@ -60,7 +79,14 @@ namespace ForgetMeNot.App.Utils
                 });
             }
 
+            BlobCache.LocalMachine.InsertObject<FriendCategory[]>(cacheKey, collection.ToArray());
+
             return collection;
+        }
+
+        private static async Task<FriendCategory[]> CheckCacheAsync(string cacheKey)
+        {
+            return await BlobCache.LocalMachine.GetObject<FriendCategory[]>(cacheKey);
         }
     }
 }
