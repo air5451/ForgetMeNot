@@ -1,9 +1,15 @@
-﻿using ForgetMeNot.App.Api;
+﻿using Akavache;
+using DynamicData.Binding;
+using ForgetMeNot.App.Api;
 using ForgetMeNot.App.Models;
 using Newtonsoft.Json;
 using RestSharp;
+using SQLitePCL;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reactive.Linq;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace ForgetMeNot.App.Utils
@@ -12,6 +18,21 @@ namespace ForgetMeNot.App.Utils
     {
         public static ObservableCollection<Grouping<string, Friend>> GetFriends(string token, string type, int zip, int distance)
         {
+            string cacheKey = string.Join("-", type, zip, distance);
+
+            try
+            {
+                Task<Friend[]> getStringTask = Task.Run(() => CheckCacheAsync(cacheKey));
+                getStringTask.Wait();
+                Friend[] result = getStringTask.Result;
+
+                if (result != null)
+                {
+                    return SortCollection(new ObservableCollection<Friend>(result));
+                }
+            }
+            catch (Exception) { }
+
             var baseUrl = ConfigStore.PetFinderApiBaseUrl;
             var relativeUrl = $"/v2/animals?type={type}&location={zip}&distance={distance}&status=adoptable";
 
@@ -37,7 +58,6 @@ namespace ForgetMeNot.App.Utils
                 foreach (var friend in friends.animals)
                 {
                     var defaultUrl = ConfigStore.DefaultFriendPicture;
-
                     collection.Add(new Friend
                     {
                         Name = friend.name,
@@ -61,12 +81,26 @@ namespace ForgetMeNot.App.Utils
             }
             while (relativeUrl != null);
 
+            var friendCollection = SortCollection(collection);
+
+            BlobCache.LocalMachine.InsertObject<Friend[]>(cacheKey, collection.ToArray());
+
+            return friendCollection;
+        }
+
+        private static ObservableCollection<Grouping<string, Friend>> SortCollection(ObservableCollection<Friend> collection)
+        {
             var sorted = from friend in collection
                          orderby friend.Breed
                          group friend by friend.SortProperty into friendGroup
                          select new Grouping<string, Friend>(friendGroup.Key, friendGroup);
 
             return new ObservableCollection<Grouping<string, Friend>>(sorted);
+        }
+
+        private static async Task<Friend[]> CheckCacheAsync(string cacheKey)
+        {
+            return await BlobCache.LocalMachine.GetObject<Friend[]>(cacheKey);
         }
     }
 }
