@@ -82,7 +82,7 @@ namespace ForgetMeNot.App.Utils
 
             var friendCollection = SortCollection(collection);
 
-            BlobCache.InMemory.InsertObject<Friend[]>(cacheKey, collection.ToArray());
+            BlobCache.LocalMachine.InsertObject<Friend[]>(cacheKey, collection.ToArray());
 
             return friendCollection;
         }
@@ -99,7 +99,7 @@ namespace ForgetMeNot.App.Utils
 
         private static async Task<Friend[]> CheckCacheAsync(string cacheKey)
         {
-            return await BlobCache.InMemory.GetObject<Friend[]>(cacheKey);
+            return await BlobCache.LocalMachine.GetObject<Friend[]>(cacheKey);
         }
     }
 }
