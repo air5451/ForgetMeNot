@@ -3,6 +3,7 @@ using ForgetMeNot.App.Models;
 using Newtonsoft.Json;
 using RestSharp;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace ForgetMeNot.App.Utils
 {
@@ -33,11 +34,29 @@ namespace ForgetMeNot.App.Utils
             foreach (var category in categories.types)
             {
                 var parts = category._links.self.href.Split('/');
+                var type = parts[parts.Length - 1];
+
+                //GetFriends returns collection of groups, where each group collection of Friends
+                var group = FriendProvider.GetFriends(token, type, 98052, 10).FirstOrDefault();
+
+                if (group == null) continue;
+
+                string image = null;
+
+                foreach (var friend in group)
+                {
+                    if (friend != null) 
+                    {
+                        image = friend.Image;
+                        break;
+                    }
+                }
 
                 collection.Add(new FriendCategory
                 {
                     Name = category.name,
-                    Type = parts[parts.Length - 1]
+                    Type = type,
+                    Image = image ?? ConfigStore.DefaultFriendPicture
                 });
             }
 
