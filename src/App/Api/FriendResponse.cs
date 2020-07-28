@@ -51,26 +51,26 @@ namespace ForgetMeNot.App.Api
         public Address address { get; set; }
     }
 
-    public class Self
+    public class SelfLink
     {
         public string href { get; set; }
     }
 
-    public class Type
+    public class TypeLink
     {
         public string href { get; set; }
     }
 
-    public class Organization
+    public class OrganizationLink
     {
         public string href { get; set; }
     }
 
     public class Links
     {
-        public Self self { get; set; }
-        public Type type { get; set; }
-        public Organization organization { get; set; }
+        public SelfLink self { get; set; }
+        public TypeLink type { get; set; }
+        public OrganizationLink organization { get; set; }
     }
 
     public class Animal

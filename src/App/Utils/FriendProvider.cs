@@ -45,8 +45,9 @@ namespace ForgetMeNot.App.Utils
                         Details = HttpUtility.UrlDecode(HttpUtility.UrlDecode(friend.description)),
                         Image = friend.photos.Count == 0 ? defaultUrl : friend.photos.FirstOrDefault().Small,
                         Breed = friend.breeds.primary,
-                        Published = friend.published_at.ToLocalTime().ToString()
-                    }); ;
+                        Published = friend.published_at.ToLocalTime().ToString(),
+                        Organization = friend.organization_id
+                    });
                 }
 
                 if (friends.pagination != null && friends.pagination._links != null && friends.pagination._links.next != null)

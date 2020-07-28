@@ -10,6 +10,9 @@
     <PackageReference Include="Xamarin.Forms" Version="4.2.0.848062" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Views\OrganizationPage.xaml.cs">
+      <DependentUpon>OrganizationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
