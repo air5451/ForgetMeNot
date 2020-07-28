@@ -37,7 +37,7 @@ namespace ForgetMeNot.App.Utils
                 var type = parts[parts.Length - 1];
 
                 //GetFriends returns collection of groups, where each group collection of Friends
-                var group = FriendProvider.GetFriends(token, type, 98052, 10).FirstOrDefault();
+                var group = FriendProvider.GetFriends(token, type, 98052, 5).FirstOrDefault();
 
                 if (group == null) continue;
 
