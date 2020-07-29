@@ -1,6 +1,7 @@
 ﻿using Xamarin.Forms;
 using ForgetMeNot.App.ViewModels;
 using ForgetMeNot.App.Models;
+using System.Threading.Tasks;
 
 namespace ForgetMeNot.App.Views
 {
@@ -9,7 +10,12 @@ namespace ForgetMeNot.App.Views
         public HomePage()
         {
             InitializeComponent();
-            BindingContext = new CategoryViewModel(true);
+        }
+
+        public async Task<HomePage> Init()
+        {
+            BindingContext = await new CategoryViewModel(true).Init();
+            return this;
         }
 
         void Handle_ItemTapped(object sender, ItemTappedEventArgs e)

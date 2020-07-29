@@ -14,7 +14,7 @@ namespace ForgetMeNot.App.Droid
     [Activity(Label = "ForgetMeNot.App.Droid", Icon = "@drawable/ForgetMeNot", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override async void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
@@ -27,7 +27,7 @@ namespace ForgetMeNot.App.Droid
 
             ImageCircle.Forms.Plugin.Droid.ImageCircleRenderer.Init();
 
-            LoadApplication(new App());
+            LoadApplication(await new App().Init());
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)

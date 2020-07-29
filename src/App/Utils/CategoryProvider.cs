@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace ForgetMeNot.App.Utils
 {
@@ -15,20 +16,14 @@ namespace ForgetMeNot.App.Utils
     {
         private static readonly string cacheKey = "FriendCategories";
 
-        public static ObservableCollection<FriendCategory> GetFriendCategories(string token)
+        public static async Task<ObservableCollection<FriendCategory>> GetFriendCategories(string token)
         {
-            try
-            {
-                Task<FriendCategory[]> getCategoryTask = Task.Run(() => CheckCacheAsync(cacheKey));
-                getCategoryTask.Wait();
-                FriendCategory[] result = getCategoryTask.Result;
+            var result = await CheckCacheAsync(cacheKey);
 
-                if (result != null)
-                {
-                    return new ObservableCollection<FriendCategory>(result);
-                }
+            if (result != null)
+            {
+                return result;
             }
-            catch (Exception) { }
 
             var baseUrl = ConfigStore.PetFinderApiBaseUrl;
             var relativeUrl = $"/v2/types";
@@ -46,7 +41,7 @@ namespace ForgetMeNot.App.Utils
             var collection = new ObservableCollection<FriendCategory>();
 
             var client = new RestClient($"{baseUrl}{relativeUrl}");
-            var response = client.Execute(request);
+            var response = await client.ExecuteTaskAsync(request);
 
             var categories = JsonConvert.DeserializeObject<FriendCategoryResponse>(response.Content);
 
@@ -79,14 +74,30 @@ namespace ForgetMeNot.App.Utils
                 });
             }
 
-            BlobCache.LocalMachine.InsertObject<FriendCategory[]>(cacheKey, collection.ToArray());
-
-            return collection;
+            return await UpdateCacheAsync(cacheKey, collection);
         }
 
-        private static async Task<FriendCategory[]> CheckCacheAsync(string cacheKey)
+        private static async Task<ObservableCollection<FriendCategory>> CheckCacheAsync(string cacheKey)
         {
-            return await BlobCache.LocalMachine.GetObject<FriendCategory[]>(cacheKey);
+            try
+            {
+                var cachedCategories = await BlobCache.LocalMachine.GetObject<FriendCategory[]>(cacheKey);
+
+                return cachedCategories == null
+                    ? null
+                    : new ObservableCollection<FriendCategory>(cachedCategories);
+            }
+            catch
+            {
+                // TODO: logging to app insights? 
+                return null;
+            }
+        }
+
+        private static async Task<ObservableCollection<FriendCategory>> UpdateCacheAsync(string cacheKey, ObservableCollection<FriendCategory> categories)
+        {
+            await BlobCache.LocalMachine.InsertObject<FriendCategory[]>(cacheKey, categories.ToArray());
+            return categories;
         }
     }
 }
