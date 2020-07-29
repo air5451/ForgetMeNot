@@ -1,4 +1,6 @@
-﻿namespace ForgetMeNot.App.Models
+﻿using ForgetMeNot.App.Api;
+
+namespace ForgetMeNot.App.Models
 {
     public class Friend
     {
@@ -15,5 +17,7 @@
         public string Published { get; set; }
 
         public string SortProperty => Breed; 
+
+        public string Organization { get; set; }
     }
 }

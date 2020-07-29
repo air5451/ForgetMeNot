@@ -6,6 +6,7 @@
     using Xamarin.Forms;
     using ForgetMeNot.App.ViewModels;
     using ForgetMeNot.App.Api;
+    using System.Threading.Tasks;
 
     public partial class HomePage : ContentPage
     {
@@ -14,6 +15,12 @@
         public HomePage()
         {
             InitializeComponent();
+        }
+
+        public async Task<HomePage> Init()
+        {
+            BindingContext = await new CategoryViewModel(true).Init();
+            return this;
         }
 
         private void Handle_ItemTapped(object sender, ItemTappedEventArgs e) => ((ListView)sender).SelectedItem = null;
@@ -71,6 +78,11 @@
             {
                 BindingContext = new CategoryViewModel(false);
             } 
+        }
+
+        async void ToolbarItem_Clicked(object sender, System.EventArgs e)
+        {
+            await Navigation.PushAsync(new SettingsPage());
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using ForgetMeNot.App.Models;
 using ForgetMeNot.App.Utils;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace ForgetMeNot.App.ViewModels
 {
@@ -12,16 +13,26 @@ namespace ForgetMeNot.App.ViewModels
         {
 
         }
+
+        private bool DesignData { get; set; }  = false;
+
         public CategoryViewModel(bool designData)
         {
-            if (designData)
+            DesignData = designData;
+        }
+
+        public async Task<CategoryViewModel> Init()
+        {
+
+            if (DesignData)
             {
-                FriendCategories = CategoryProvider.GetFriendCategories(TokenProvider.GetToken());
+                FriendCategories = await CategoryProvider.GetFriendCategories(TokenProvider.GetToken());
             }
             else
             {
                 //Setup web requests and such
             }
+            return this;
         }
 
         public bool IsBusy { get; set; }

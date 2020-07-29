@@ -12,7 +12,7 @@
     [Activity(Label = "ForgetMeNot.App.Droid", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
-        protected override void OnCreate(Bundle bundle)
+        protected override async void OnCreate(Bundle savedInstanceState)
         {
             CrossCurrentActivity.Current.Init(this, bundle);
             DependencyService.Register<IParentWindowLocatorService, AndroidParentWindowLocatorService>();
@@ -20,13 +20,22 @@
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
-            base.OnCreate(bundle);
+            base.OnCreate(savedInstanceState);
 
-            global::Xamarin.Forms.Forms.Init(this, bundle);
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+
+            Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
             ImageCircle.Forms.Plugin.Droid.ImageCircleRenderer.Init();
 
-            LoadApplication(new App());
+            LoadApplication(await new App().Init());
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
+        {
+            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)

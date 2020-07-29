@@ -18,12 +18,17 @@
             </x:Arguments>
         </viewmodels:CategoryViewModel>
     </d:ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Settings" Clicked="ToolbarItem_Clicked" />
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
+        
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+
             <Label Margin="10" 
                    Text="{Binding CategoriesCount,
                           StringFormat='{0} categories'}"
