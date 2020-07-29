@@ -1,5 +1,6 @@
 ﻿using Akavache;
 using ForgetMeNot.App.Views;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,12 +12,16 @@ namespace ForgetMeNot.App
         public App()
         {
             BlobCache.ApplicationName = "ForgetMeNot";
+        }
 
-            MainPage = new NavigationPage(new HomePage())
+        public async Task<App> Init()
+        {
+            MainPage = new NavigationPage(await new HomePage().Init())
             {
                 BarTextColor = Color.White,
                 BarBackgroundColor = Color.FromHex("#F2C500")
             };
+            return this;
         }
     }
 }
