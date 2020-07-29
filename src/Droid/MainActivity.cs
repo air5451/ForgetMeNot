@@ -1,14 +1,14 @@
-﻿namespace ForgetMeNot.App.Droid
-{
-    using Android.App;
-    using Android.Content;
-    using Android.Content.PM;
-    using Android.OS;
-    using Xamarin.Forms;
-    using Plugin.CurrentActivity;
-    using ForgetMeNot.App.LogOn;
-    using Microsoft.Identity.Client;
+﻿using Android.App;
+using Android.Content;
+using Android.Content.PM;
+using Android.OS;
+using Xamarin.Forms;
+using Plugin.CurrentActivity;
+using ForgetMeNot.App.LogOn;
+using Microsoft.Identity.Client;
 
+namespace ForgetMeNot.App.Droid
+{
     [Activity(Label = "ForgetMeNot.App.Droid", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {

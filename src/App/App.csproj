@@ -4,7 +4,7 @@
     <RootNamespace>ForgetMeNot.App</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-	<PackageReference Include="akavache" Version="6.10.20" />
+    <PackageReference Include="akavache" Version="6.10.20" />
     <PackageReference Include="akavache.core" Version="6.10.20" />
     <PackageReference Include="akavache.mobile" Version="6.10.20" />
     <PackageReference Include="akavache.sqlite3" Version="6.10.20" />

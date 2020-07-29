@@ -1,14 +1,14 @@
-﻿namespace ForgetMeNot.App.LogOn
-{
-    using Microsoft.Identity.Client;
-    using Newtonsoft.Json.Linq;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using Xamarin.Forms;
+﻿using Microsoft.Identity.Client;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
+using Xamarin.Forms;
 
+namespace ForgetMeNot.App.LogOn
+{
     public class B2CAuthenticationService
     {
         private readonly IPublicClientApplication _pca;

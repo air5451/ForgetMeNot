@@ -1,9 +1,9 @@
-﻿namespace ForgetMeNot.App.Droid
-{
-    using Android.App;
-    using Android.Content;
-    using Microsoft.Identity.Client;
+﻿using Android.App;
+using Android.Content;
+using Microsoft.Identity.Client;
 
+namespace ForgetMeNot.App.Droid
+{
     [Activity]
     [IntentFilter(new[] { Intent.ActionView },
         Categories = new[] { Intent.CategoryBrowsable, Intent.CategoryDefault },
