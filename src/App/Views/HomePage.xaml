@@ -78,6 +78,7 @@
                 d:IsRunning="True"
                 HorizontalOptions="Center"
                 VerticalOptions="Center"/>
+            <Button x:Name="btnSignInSignOut" Text="Sign in" Clicked="OnSignInSignOut" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

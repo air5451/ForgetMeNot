@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForgetMeNot.Android", "Droi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App", "App\App.csproj", "{D4551095-FA00-4E1D-B0E4-CC0B765A90AC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{08DC5F22-7BA9-45B2-AFDF-9D1081A1ED4E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,18 @@ Global
 		{D4551095-FA00-4E1D-B0E4-CC0B765A90AC}.Release|iPhone.Build.0 = Release|Any CPU
 		{D4551095-FA00-4E1D-B0E4-CC0B765A90AC}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{D4551095-FA00-4E1D-B0E4-CC0B765A90AC}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{08DC5F22-7BA9-45B2-AFDF-9D1081A1ED4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08DC5F22-7BA9-45B2-AFDF-9D1081A1ED4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08DC5F22-7BA9-45B2-AFDF-9D1081A1ED4E}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{08DC5F22-7BA9-45B2-AFDF-9D1081A1ED4E}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{08DC5F22-7BA9-45B2-AFDF-9D1081A1ED4E}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{08DC5F22-7BA9-45B2-AFDF-9D1081A1ED4E}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{08DC5F22-7BA9-45B2-AFDF-9D1081A1ED4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08DC5F22-7BA9-45B2-AFDF-9D1081A1ED4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08DC5F22-7BA9-45B2-AFDF-9D1081A1ED4E}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{08DC5F22-7BA9-45B2-AFDF-9D1081A1ED4E}.Release|iPhone.Build.0 = Release|Any CPU
+		{08DC5F22-7BA9-45B2-AFDF-9D1081A1ED4E}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{08DC5F22-7BA9-45B2-AFDF-9D1081A1ED4E}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
