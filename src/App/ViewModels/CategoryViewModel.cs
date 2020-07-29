@@ -23,7 +23,6 @@ namespace ForgetMeNot.App.ViewModels
 
         public async Task<CategoryViewModel> Init()
         {
-
             if (DesignData)
             {
                 FriendCategories = await CategoryProvider.GetFriendCategories(TokenProvider.GetToken());

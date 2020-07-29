@@ -40,6 +40,20 @@
         <string>UIInterfaceOrientationLandscapeLeft</string>
         <string>UIInterfaceOrientationLandscapeRight</string>
     </array>
+    <array>
+        <dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.microsoft.forgetmenot</string>
+            <key>CFBundleURLSchemes</key>
+                <array>
+                    <string>msal9aeaf003-678b-464f-b587-ae2516be77ee</string>
+                </array>
+            <key>CFBundleTypeRole</key>
+            <string>None</string>
+        </dict>
+    </array>
     <key>XSAppIconAssets</key>
     <string>Assets.xcassets/AppIcons.appiconset</string>
 </dict>

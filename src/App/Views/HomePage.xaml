@@ -20,9 +20,9 @@
     </d:ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Settings" Clicked="ToolbarItem_Clicked" />
+        <ToolbarItem x:Name="btnSignInSignOut" Text="Sign in" Clicked="OnSignInSignOut"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -83,7 +83,6 @@
                 d:IsRunning="True"
                 HorizontalOptions="Center"
                 VerticalOptions="Center"/>
-
         </Grid>
     </ContentPage.Content>
 </ContentPage>
