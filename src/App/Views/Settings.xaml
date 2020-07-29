@@ -17,11 +17,11 @@
                 </Grid.RowDefinitions>
                 <Label FontSize="20" Text="Your Zipcode" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center"
            VerticalOptions="Center"/>
-                <Entry Placeholder="" Grid.Row="0" Grid.Column="1" VerticalOptions="Center" TextChanged="Entry_TextChangedZipcode"/>
+                <Entry Placeholder="" Grid.Row="0" Grid.Column="1" VerticalOptions="Center" TextChanged="Entry_TextChangedZipcode" Text="{Binding Zipcode}"/>
                 <Label FontSize="20" Text="Search Radius" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center"
            VerticalOptions="Center" />
-                <Entry Placeholder="" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" TextChanged="Entry_TextChangedDistance"/>
-                <Button x:Name="button" Text="Save Settings" Grid.Row="3" HorizontalOptions="CenterAndExpand" Padding="30" Grid.ColumnSpan="2" Clicked="Button_Clicked" IsEnabled="False"/>
+                <Entry Placeholder="" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" TextChanged="Entry_TextChangedDistance" Text="{Binding Distance}"/>
+                <Button x:Name="button" Text="Save Settings" Grid.Row="3" HorizontalOptions="CenterAndExpand" Padding="30" Grid.ColumnSpan="2" Clicked="Button_Clicked" IsEnabled="False" />
             </Grid>
 
         </StackLayout>
