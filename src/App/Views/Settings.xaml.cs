@@ -15,12 +15,27 @@ namespace ForgetMeNot.App.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SettingsPage : ContentPage
     {
-        private int zipcode = 0;
-        private int distance = 0;
+        private bool zipcoderegex = false;
+        private bool distanceregex = false;
+
+        public int zipcode = Global.ZipCode;
+        public int Zipcode
+        {
+            get { return zipcode; }
+            set { zipcode = value; }
+        }
+
+        public int distance = Global.Distance;
+        public int Distance
+        {
+            get { return distance; }
+            set { distance = value; }
+        }
 
         public SettingsPage()
         {
             InitializeComponent();
+            BindingContext = this;
         }
 
         private void Button_Clicked(object sender, EventArgs e)
@@ -46,8 +61,9 @@ namespace ForgetMeNot.App.Views
             var button = this.FindByName<Button>("button");
 
             bool result = int.TryParse(text, out i);
+            zipcoderegex = result;
 
-            if (result)
+            if (zipcoderegex && distanceregex)
             {
                 button.IsEnabled = true;
                 this.zipcode = i;
@@ -65,8 +81,9 @@ namespace ForgetMeNot.App.Views
             var button = this.FindByName<Button>("button");
 
             bool result = int.TryParse(text, out i);
+            distanceregex = result;
 
-            if (result)
+            if (zipcoderegex && distanceregex)
             {
                 button.IsEnabled = true;
                 this.distance = i;
