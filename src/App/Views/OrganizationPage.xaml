@@ -66,6 +66,8 @@
                    Grid.Column="1" Grid.Row="16" HorizontalTextAlignment="Start"/>
             <Label Text="{Binding Organization.Hrs.Sunday}" 
                    Grid.Column="1" Grid.Row="10" HorizontalTextAlignment="Start"/>
+            <Button Text="Show on map" Clicked="Button_Clicked" 
+                    Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="12"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
