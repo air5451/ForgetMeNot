@@ -74,7 +74,7 @@ namespace ForgetMeNot.App.Views
             }
         }
 
-        private void Entry_TextChangedDistance(object sender, TextChangedEventArgs e)
+        private async Task Entry_TextChangedDistanceAsync(object sender, TextChangedEventArgs e)
         {
             string text = (sender as Entry).Text;
             int i = 0;
