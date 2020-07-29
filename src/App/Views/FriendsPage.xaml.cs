@@ -1,26 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using ForgetMeNot.App.ViewModels;
-using Xamarin.Forms;
+﻿using ForgetMeNot.App.ViewModels;
 using ForgetMeNot.App.Models;
-using System.ComponentModel;
+using Xamarin.Forms;
 
 namespace ForgetMeNot.App.Views
 {
     public partial class FriendsPage : ContentPage
     {
-        public FriendsPage(FriendCategory category, string zip)
+        public FriendsPage(FriendCategory category)
         {
             InitializeComponent();
-
-            int zipInt = 98004;
-            int.TryParse(zip, out zipInt);
-
-            BindingContext = new FriendsViewModel(category, zipInt);
+            BindingContext = new FriendsViewModel(category);
         }
 
-        void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
-        => ((ListView)sender).SelectedItem = null;
+        void Handle_ItemTapped(object sender, ItemTappedEventArgs e) => ((ListView)sender).SelectedItem = null;
 
         async void Handle_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {

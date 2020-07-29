@@ -14,7 +14,7 @@
     {
         protected override async void OnCreate(Bundle savedInstanceState)
         {
-            CrossCurrentActivity.Current.Init(this, bundle);
+            CrossCurrentActivity.Current.Init(this, savedInstanceState);
             DependencyService.Register<IParentWindowLocatorService, AndroidParentWindowLocatorService>();
 
             TabLayoutResource = Resource.Layout.Tabbar;

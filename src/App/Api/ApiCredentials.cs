@@ -1,7 +1,7 @@
-﻿namespace ForgetMeNot.App.Api
-{
-    using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
+namespace ForgetMeNot.App.Api
+{
     public class ApiCredentials
     {
         [JsonProperty("clientId")]

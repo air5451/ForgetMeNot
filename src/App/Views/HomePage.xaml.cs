@@ -1,13 +1,14 @@
-﻿namespace ForgetMeNot.App.Views
-{
-    using System;
-    using ForgetMeNot.App.Models;
-    using ForgetMeNot.App.LogOn;
-    using Xamarin.Forms;
-    using ForgetMeNot.App.ViewModels;
-    using ForgetMeNot.App.Api;
-    using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using ForgetMeNot.App.Models;
+using ForgetMeNot.App.LogOn;
+using ForgetMeNot.App.ViewModels;
+using ForgetMeNot.App.Api;
+using ForgetMeNot.App.Utils;
+using Xamarin.Forms;
 
+namespace ForgetMeNot.App.Views
+{
     public partial class HomePage : ContentPage
     {
         private UserContext userContext = null;
@@ -19,7 +20,7 @@
 
         public async Task<HomePage> Init()
         {
-            BindingContext = await new CategoryViewModel(true).Init();
+            await this.LogInLogOutActionAsync();
             return this;
         }
 
@@ -30,8 +31,12 @@
             var category = ((ListView)sender).SelectedItem as FriendCategory;
             if (category == null)
                 return;
-
-            await Navigation.PushAsync(new FriendsPage(category, this.userContext.PostalCode));
+            await Navigation.PushAsync(new FriendsPage(category));
+        }
+        
+        private async void ToolbarItem_Clicked(object sender, System.EventArgs e)
+        {
+            await Navigation.PushAsync(new SettingsPage());
         }
 
         private async void OnSignInSignOut(object sender, EventArgs e)
@@ -39,19 +44,19 @@
             await LogInLogOutActionAsync();
         }
 
-        private async System.Threading.Tasks.Task LogInLogOutActionAsync()
+        private async Task LogInLogOutActionAsync()
         {
             try
             {
-                if (btnSignInSignOut.Text == "Sign in")
+                if (this.userContext == null || !this.userContext.IsLoggedOn)
                 {
                     this.userContext = await B2CAuthenticationService.Instance.SignInAsync();
-                    UpdateSignInState();
+                    await UpdateSignInStateAsync();
                 }
                 else
                 {
                     this.userContext = await B2CAuthenticationService.Instance.SignOutAsync();
-                    UpdateSignInState();
+                    await UpdateSignInStateAsync();
                 }
             }
             catch (Exception ex)
@@ -60,29 +65,26 @@
             }
         }
 
-        private void UpdateSignInState()
+        private async Task UpdateSignInStateAsync()
         {
-            var isSignedIn = userContext.IsLoggedOn;
-            btnSignInSignOut.Text = isSignedIn ? "Sign out" : "Sign in";
-            this.Refresh();
-        }
+            var isSignedIn = this.userContext.IsLoggedOn;
 
-        private void Refresh()
-        {
-            if (userContext.IsLoggedOn)
+            if (!isSignedIn)
             {
-                ApiCredentialProvider.SetApiCredentialsAsync(userContext);
-                BindingContext = new CategoryViewModel(true);
+                BindingContext = await new CategoryViewModel(false).Init();
             }
             else
             {
-                BindingContext = new CategoryViewModel(false);
-            } 
-        }
+                int zipCodeFromToken;
+                if (int.TryParse(this.userContext.PostalCode, out zipCodeFromToken))
+                {
+                    Global.ZipCode = zipCodeFromToken;
+                }
+                await ApiCredentialProvider.SetApiCredentialsAsync(this.userContext);
+                BindingContext = await new CategoryViewModel(true).Init();
+            }
 
-        async void ToolbarItem_Clicked(object sender, System.EventArgs e)
-        {
-            await Navigation.PushAsync(new SettingsPage());
+            btnSignInSignOut.Text = isSignedIn ? "Sign out" : "Sign in";
         }
     }
 }
