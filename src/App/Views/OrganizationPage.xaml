@@ -3,71 +3,62 @@
 		xmlns="http://xamarin.com/schemas/2014/forms" 
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 		x:Class="ForgetMeNot.App.Views.OrganizationPage"
-        Title="{Binding Organization.Name}}">
+        Title="{Binding Organization.Name}">
     <ContentPage.Content>
-        <Grid>
+        <Grid Margin="20,35,20,25">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="0.5*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="60"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Label Text="Address" FontAttributes="Bold" 
-                   Grid.Column="0" Grid.Row="0" HorizontalTextAlignment="Start"/>
-            <Label Text="{Binding Organization.Addr.Address1}" 
-                   Grid.Column="1" Grid.Row="1" HorizontalTextAlignment="Start"/>
-            <Label Text="{Binding Organization.Addr.Address2}" 
-                   Grid.Column="1" Grid.Row="2" HorizontalTextAlignment="Start"/>
-            <Label Text="{Binding Organization.Addr.City}" 
-                   Grid.Column="1" Grid.Row="3" HorizontalTextAlignment="Start"/>
-            <Label Text="{Binding Organization.Addr.State}" 
-                   Grid.Column="1" Grid.Row="4" HorizontalTextAlignment="Start"/>
-            <Label Text="Phone" FontAttributes="Bold" 
-                   Grid.Column="0" Grid.Row="6" HorizontalTextAlignment="Start"/>
-            <Label Text="{Binding Organization.Phone}" 
-                   Grid.Column="1" Grid.Row="6" HorizontalTextAlignment="Start"/>
-            <Label Text="Email" FontAttributes="Bold" 
-                   Grid.Column="0" Grid.Row="8" HorizontalTextAlignment="Start"/>
-            <Label Text="{Binding Organization.Email}" 
-                   Grid.Column="1" Grid.Row="8" HorizontalTextAlignment="Start"/>
-            <Label Text="Hours" FontAttributes="Bold" 
-                   Grid.Column="0" Grid.Row="10" HorizontalTextAlignment="Start"/>
-            <Label Text="{Binding Organization.Hrs.Monday}" 
-                   Grid.Column="1" Grid.Row="11" HorizontalTextAlignment="Start"/>
-            <Label Text="{Binding Organization.Hrs.Tuesday}" 
-                   Grid.Column="1" Grid.Row="12" HorizontalTextAlignment="Start"/>
-            <Label Text="{Binding Organization.Hrs.Wednesday}" 
-                   Grid.Column="1" Grid.Row="13" HorizontalTextAlignment="Start"/>
-            <Label Text="{Binding Organization.Hrs.Thurdsay}" 
-                   Grid.Column="1" Grid.Row="14" HorizontalTextAlignment="Start"/>
-            <Label Text="{Binding Organization.Hrs.Friday}" 
-                   Grid.Column="1" Grid.Row="15" HorizontalTextAlignment="Start"/>
-            <Label Text="{Binding Organization.Hrs.Saturday}" 
-                   Grid.Column="1" Grid.Row="16" HorizontalTextAlignment="Start"/>
-            <Label Text="{Binding Organization.Hrs.Sunday}" 
-                   Grid.Column="1" Grid.Row="10" HorizontalTextAlignment="Start"/>
-            <Button Text="Show on map" Clicked="Button_Clicked" 
-                    Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="12"/>
+            <Grid Grid.Row="0" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.25*"/>
+                    <RowDefinition Height="0.25*"/>
+                    <RowDefinition Height="0.25*"/>
+                    <RowDefinition Height="0.25*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.25*"/>
+                    <ColumnDefinition Width="0.75*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Address" FontAttributes="Bold" 
+                       Grid.Column="0" Grid.Row="0" HorizontalTextAlignment="Start"/>
+                <Label x:Name="AddressControl" 
+                       Grid.Column="1" Grid.Row="0" HorizontalTextAlignment="Start"/>
+                <Label Text="Phone" FontAttributes="Bold" 
+                       Grid.Column="0" Grid.Row="1" HorizontalTextAlignment="Start"/>
+                <Label Text="{Binding Organization.Phone}" 
+                       Grid.Column="1" Grid.Row="1" HorizontalTextAlignment="Start"/>
+                <Label Text="Email" FontAttributes="Bold" 
+                       Grid.Column="0" Grid.Row="2" HorizontalTextAlignment="Start"/>
+                <Label Text="{Binding Organization.Email}" 
+                       Grid.Column="1" Grid.Row="2" HorizontalTextAlignment="Start"/>
+                <Label Text="Hours" FontAttributes="Bold" 
+                       Grid.Column="0" Grid.Row="3" HorizontalTextAlignment="Start"/>
+                <Label x:Name="HoursControl" 
+                       Grid.Column="1" Grid.Row="3" HorizontalTextAlignment="Start"/>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition Height="0.5*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="0.5*"/>
+                </Grid.ColumnDefinitions>
+                <Button Text="Directions" Clicked="Directions_Clicked" 
+                        Grid.Column="0" Grid.Row="0" />
+                <Button Text="Email" Clicked="Email_Clicked"
+                        Grid.Column="1" Grid.Row="0" />
+                <Button Text="Phone" Clicked="Phone_Clicked"
+                        Grid.Column="0" Grid.Row="1" />
+                <Button Text="SMS" Clicked="Sms_Clicked"
+                        Grid.Column="1" Grid.Row="1" />
+            </Grid>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
