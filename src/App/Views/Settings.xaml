@@ -19,10 +19,10 @@
            VerticalOptions="Center"/>
                 <Label Margin="20,0" FontSize="16" Text="Current Zipcode" Grid.Row="1" Grid.Column="0" HorizontalOptions="Start"
            VerticalOptions="Center"/>
-                <Entry Placeholder="" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" TextChanged="Entry_TextChangedZipcode" Text="{Binding Zipcode}"/>
+                <Entry Keyboard="Numeric" Placeholder="" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" TextChanged="Entry_TextChangedZipcode" Text="{Binding Zipcode}"/>
                 <Label Margin="20,0" FontSize="16" Text="Search Radius" Grid.Row="2" Grid.Column="0" HorizontalOptions="Start"
            VerticalOptions="Center" />
-                <Entry Placeholder="" Grid.Row="2" Grid.Column="1" VerticalOptions="Center" TextChanged="Entry_TextChangedDistance" Text="{Binding Distance}"/>
+                <Entry Keyboard="Numeric" Placeholder="" Grid.Row="2" Grid.Column="1" VerticalOptions="Center" TextChanged="Entry_TextChangedDistance" Text="{Binding Distance}"/>
                 <Button x:Name="button" TextColor="White" BackgroundColor="#F2C500" CornerRadius="30" Text="Save Settings" Grid.Row="4" HorizontalOptions="CenterAndExpand" Padding="30" Grid.ColumnSpan="2" Clicked="Button_Clicked" IsEnabled="False" />
             </Grid>
         </StackLayout>

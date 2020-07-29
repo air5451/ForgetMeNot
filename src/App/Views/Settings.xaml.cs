@@ -63,7 +63,7 @@ namespace ForgetMeNot.App.Views
             bool result = int.TryParse(text, out i);
             zipcoderegex = result;
 
-            if (zipcoderegex && distanceregex)
+            if (zipcoderegex && distanceregex && i >= 10000 && i <= 99999)
             {
                 button.IsEnabled = true;
                 this.zipcode = i;
@@ -74,7 +74,7 @@ namespace ForgetMeNot.App.Views
             }
         }
 
-        private async Task Entry_TextChangedDistanceAsync(object sender, TextChangedEventArgs e)
+        private void Entry_TextChangedDistance(object sender, TextChangedEventArgs e)
         {
             string text = (sender as Entry).Text;
             int i = 0;
@@ -83,7 +83,7 @@ namespace ForgetMeNot.App.Views
             bool result = int.TryParse(text, out i);
             distanceregex = result;
 
-            if (zipcoderegex && distanceregex)
+            if (zipcoderegex && distanceregex && i >= 0)
             {
                 button.IsEnabled = true;
                 this.distance = i;
