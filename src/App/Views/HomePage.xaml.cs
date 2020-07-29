@@ -23,6 +23,11 @@ namespace ForgetMeNot.App.Views
 
             await Navigation.PushAsync(new FriendsPage(category));
         }
+
+        async void ToolbarItem_Clicked(object sender, System.EventArgs e)
+        {
+            await Navigation.PushAsync(new SettingsPage());
+        }
     }
 }
 
