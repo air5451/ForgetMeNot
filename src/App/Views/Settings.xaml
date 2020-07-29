@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ForgetMeNot.App.Views.SettingsPage"
+             Title="Settings">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid Padding="30" VerticalOptions="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Label FontSize="20" Text="Your Zipcode" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center"
+           VerticalOptions="Center"/>
+                <Entry Placeholder="" Grid.Row="0" Grid.Column="1" VerticalOptions="Center" TextChanged="Entry_TextChangedZipcode"/>
+                <Label FontSize="20" Text="Search Radius" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center"
+           VerticalOptions="Center" />
+                <Entry Placeholder="" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" TextChanged="Entry_TextChangedDistance"/>
+                <Button x:Name="button" Text="Save Settings" Grid.Row="3" HorizontalOptions="CenterAndExpand" Padding="30" Grid.ColumnSpan="2" Clicked="Button_Clicked" IsEnabled="False"/>
+            </Grid>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
