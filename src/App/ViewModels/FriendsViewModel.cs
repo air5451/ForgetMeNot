@@ -12,9 +12,9 @@ namespace ForgetMeNot.App.ViewModels
         {
 
         }
-        public FriendsViewModel(FriendCategory category)
+        public FriendsViewModel(FriendCategory category, int zip)
         {
-            FriendsGrouped = FriendProvider.GetFriends(TokenProvider.GetToken(), category.Type, 98052, 5);
+            FriendsGrouped = FriendProvider.GetFriends(TokenProvider.GetToken(), category.Type, zip, 5);
         }
 
         public bool IsBusy { get; set; }

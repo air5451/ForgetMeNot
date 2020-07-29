@@ -9,10 +9,14 @@ namespace ForgetMeNot.App.Views
 {
     public partial class FriendsPage : ContentPage
     {
-        public FriendsPage(FriendCategory category)
+        public FriendsPage(FriendCategory category, string zip)
         {
             InitializeComponent();
-            BindingContext = new FriendsViewModel(category);
+
+            int zipInt = 98004;
+            int.TryParse(zip, out zipInt);
+
+            BindingContext = new FriendsViewModel(category, zipInt);
         }
 
         void Handle_ItemTapped(object sender, ItemTappedEventArgs e)

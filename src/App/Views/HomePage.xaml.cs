@@ -24,7 +24,7 @@
             if (category == null)
                 return;
 
-            await Navigation.PushAsync(new FriendsPage(category));
+            await Navigation.PushAsync(new FriendsPage(category, this.userContext.PostalCode));
         }
 
         private async void OnSignInSignOut(object sender, EventArgs e)
