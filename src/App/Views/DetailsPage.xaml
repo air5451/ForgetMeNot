@@ -20,7 +20,7 @@
                 <Label Text="{Binding Friend.Location}" FontSize="Micro"/>
                 <Label Text="{Binding Friend.Details}" FontSize="Large"/>
                 <Label Text="{Binding Friend.Published}" FontSize="Micro"/>
-                <Button Text="{Binding Friend.Name, StringFormat='Ask about {0}'}" Clicked="Button_Clicked" />
+                <Button Text="{Binding Friend.Name, StringFormat='Ask about {0}'}" TextColor="White" BackgroundColor="#F2C500" CornerRadius="30" HorizontalOptions="CenterAndExpand" Padding="30" Clicked="Button_Clicked" />
             </StackLayout>
 		</ScrollView>
     </ContentPage.Content>

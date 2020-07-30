@@ -1,9 +1,12 @@
-﻿using ForgetMeNot.App.Api;
+﻿using Akavache;
+using ForgetMeNot.App.Api;
 using ForgetMeNot.App.Api.Types;
 using ForgetMeNot.App.Models;
 using Newtonsoft.Json;
 using RestSharp;
 using System.Collections.ObjectModel;
+using System.Reactive.Linq;
+using System.Threading.Tasks;
 
 namespace ForgetMeNot.App.Utils
 {
@@ -11,6 +14,17 @@ namespace ForgetMeNot.App.Utils
     {
         public static Models.Organization GetOrganization(string organizationid, string token)
         {
+            string cacheKey = organizationid;
+
+            Task<Models.Organization> getStringTask = Task.Run(() => CheckCacheAsync(cacheKey));
+            getStringTask.Wait();
+            Models.Organization result = getStringTask.Result;
+
+            if (result != null)
+            {
+                return result;
+            }
+
             var baseUrl = ConfigStore.PetFinderApiBaseUrl;
             var relativeUrl = $"/v2/organizations/" + organizationid;
 
@@ -29,7 +43,7 @@ namespace ForgetMeNot.App.Utils
 
             Api.Organization organization = JsonConvert.DeserializeObject<OrganizationResponse>(response.Content).organization;
 
-            return new Models.Organization
+            var org = new Models.Organization
             {
                 Id = organization.id,
                 Name = organization.name,
@@ -57,6 +71,25 @@ namespace ForgetMeNot.App.Utils
                 },
                 Website = organization.website
             };
+
+            BlobCache.LocalMachine.InsertObject<Models.Organization>(cacheKey, org);
+
+            return org;
+        }
+
+        private static async Task<Models.Organization> CheckCacheAsync(string cacheKey)
+        {
+            try
+            {
+                var cachedOrganization = await BlobCache.LocalMachine.GetObject<Models.Organization>(cacheKey);
+
+                return cachedOrganization;
+            }
+            catch
+            {
+                // TODO: logging to app insights? 
+                return null;
+            }
         }
     }
 }

@@ -66,7 +66,21 @@ namespace ForgetMeNot.App.Utils
                         Image = friend.photos.Count == 0 ? defaultUrl : friend.photos.FirstOrDefault().Small,
                         Breed = friend.breeds.primary,
                         Published = friend.published_at.ToLocalTime().ToString(),
-                        Organization = friend.organization_id
+                        Organization = friend.organization_id,
+                        Contacts = new Friend.Contact
+                        {
+                            Address = new Friend.Address
+                            {
+                                Address1 = friend.contact.address.address1,
+                                Address2 = friend.contact.address.address2,
+                                City = friend.contact.address.city,
+                                State = friend.contact.address.state,
+                                Country = friend.contact.address.country,
+                                Postcode = friend.contact.address.postcode
+                            },
+                            Email = friend.contact.email,
+                            Phone = friend.contact.phone
+                        }
                     });
                 }
 

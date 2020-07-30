@@ -16,7 +16,8 @@ namespace ForgetMeNot.App.Views
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new OrganizationPage(((DetailsViewModel)BindingContext).Friend.Organization));
+            Friend friend = ((DetailsViewModel)BindingContext).Friend;
+            await Navigation.PushAsync(new ContactPage(friend.Organization, friend.Contacts));
         }
     }
 }

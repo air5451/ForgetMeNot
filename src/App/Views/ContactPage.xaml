@@ -2,7 +2,7 @@
 <ContentPage 
 		xmlns="http://xamarin.com/schemas/2014/forms" 
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-		x:Class="ForgetMeNot.App.Views.OrganizationPage"
+		x:Class="ForgetMeNot.App.Views.ContactPage"
         Title="{Binding Organization.Name}">
     <ContentPage.Content>
         <Grid Margin="20,35,20,25">
@@ -15,10 +15,9 @@
             </Grid.ColumnDefinitions>
             <Grid Grid.Row="0" Grid.Column="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="0.25*"/>
-                    <RowDefinition Height="0.25*"/>
-                    <RowDefinition Height="0.25*"/>
-                    <RowDefinition Height="0.25*"/>
+                    <RowDefinition Height="0.34*"/>
+                    <RowDefinition Height="0.33*"/>
+                    <RowDefinition Height="0.33*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.25*"/>
@@ -36,28 +35,27 @@
                        Grid.Column="0" Grid.Row="2" HorizontalTextAlignment="Start"/>
                 <Label Text="{Binding Organization.Email}" 
                        Grid.Column="1" Grid.Row="2" HorizontalTextAlignment="Start"/>
-                <Label Text="Hours" FontAttributes="Bold" 
-                       Grid.Column="0" Grid.Row="3" HorizontalTextAlignment="Start"/>
-                <Label x:Name="HoursControl" 
-                       Grid.Column="1" Grid.Row="3" HorizontalTextAlignment="Start"/>
             </Grid>
             <Grid Grid.Row="1" Grid.Column="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="0.5*"/>
-                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.5*"/>
                     <ColumnDefinition Width="0.5*"/>
                 </Grid.ColumnDefinitions>
-                <Button Text="Directions" Clicked="Directions_Clicked" 
-                        Grid.Column="0" Grid.Row="0" />
-                <Button Text="Email" Clicked="Email_Clicked"
-                        Grid.Column="1" Grid.Row="0" />
-                <Button Text="Phone" Clicked="Phone_Clicked"
-                        Grid.Column="0" Grid.Row="1" />
-                <Button Text="SMS" Clicked="Sms_Clicked"
-                        Grid.Column="1" Grid.Row="1" />
+                <StackLayout Grid.Column="0" Grid.Row="0" VerticalOptions="Start">
+                    <Button Text="Directions" TextColor="White" BackgroundColor="#F2C500" HeightRequest="50" 
+            VerticalOptions="Center" Clicked="Directions_Clicked" />
+                    <Button Text="Phone" TextColor="White" BackgroundColor="#F2C500" HeightRequest="50" 
+            VerticalOptions="Center" Clicked="Phone_Clicked"/>
+                </StackLayout>
+                <StackLayout Grid.Column="1" Grid.Row="0" VerticalOptions="Start">
+                    <Button Text="Email" TextColor="White" BackgroundColor="#F2C500" HeightRequest="50" 
+            VerticalOptions="Center" Clicked="Email_Clicked"/>
+                    <Button Text="SMS" TextColor="White" BackgroundColor="#F2C500" HeightRequest="50" 
+            VerticalOptions="Center" Clicked="Sms_Clicked" />
+                </StackLayout>
             </Grid>
         </Grid>
     </ContentPage.Content>
