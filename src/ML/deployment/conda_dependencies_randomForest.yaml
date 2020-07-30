@@ -1,0 +1,11 @@
+name: project_environment
+dependencies:
+  - python=3.7.6
+  - scikit-learn=0.23.0
+  - joblib=0.14.1
+  - pandas=1.0.3
+  - numpy=1.18.5
+  - pip:
+      # You must list azureml-defaults as a pip dependency
+    - azureml-defaults>=1.0.45
+    - inference-schema[numpy-support]
