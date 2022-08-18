@@ -41,7 +41,7 @@ namespace ForgetMeNot.App.Utils
             var collection = new ObservableCollection<FriendCategory>();
 
             var client = new RestClient($"{baseUrl}{relativeUrl}");
-            var response = await client.ExecuteTaskAsync(request);
+            var response = await client.ExecuteAsync(request);
 
             var categories = JsonConvert.DeserializeObject<FriendCategoryResponse>(response.Content);
 

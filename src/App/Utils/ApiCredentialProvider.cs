@@ -14,8 +14,8 @@ namespace ForgetMeNot.App.Api
             client.Timeout = -1;
             var request = new RestRequest(Method.GET);
             request.AddHeader("Authorization", $"Bearer {userContext.AccessToken}");
-            var response = await client.ExecuteTaskAsync(request);
-            var cleaned = System.Text.RegularExpressions.Regex.Unescape(response.Content.RemoveSurroundingQuotes());
+            var response = await client.ExecuteAsync(request);
+            var cleaned = System.Text.RegularExpressions.Regex.Unescape(response.Content.Trim('"'));
             var credentials = JsonConvert.DeserializeObject<ApiCredentials>(cleaned);
             ConfigStore.ClientId = credentials.ClientId;
             ConfigStore.ClientSecret = credentials.ClientSecret;
