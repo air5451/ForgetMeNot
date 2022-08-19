@@ -13,7 +13,7 @@ jobs:
       run: |
         ls '/Library/Frameworks/Xamarin.Android.framework/Versions'
         ls '/Library/Frameworks/Mono.framework/Versions'
-        $VM_ASSETS/select-xamarin-sdk-v2.sh --android=11
+        $VM_ASSETS/select-xamarin-sdk-v2.sh --android=11.0
 
     - name: Setup .NET Core SDK 5.0.x
       uses: actions/setup-dotnet@v2
