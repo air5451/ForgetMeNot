@@ -22,4 +22,4 @@ jobs:
       run: nuget restore src/ForgetMeNot.sln
 
     - name: Build
-      run: msbuild src/ForgetMeNot.sln /t:ForgetMeNot_Droid:Build /p:Configuration=Debug
+      run: msbuild src/Droid/ForgetMeNot.Android.csproj /t:Build /p:Configuration=Debug
