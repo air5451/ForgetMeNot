@@ -6,7 +6,7 @@
     <ProjectGuid>{88817254-C139-4DE4-B9A7-DA58A24337BE}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>Monkeys.Droid</RootNamespace>
+    <RootNamespace>ForgetMeNot.Droid</RootNamespace>
     <AssemblyName>ForgetMeNot.Droid</AssemblyName>
     <TargetFrameworkVersion>v11.0</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>

@@ -6,8 +6,8 @@
     <ProjectGuid>{AE9DDA08-AE58-46C1-B350-8C74526E6984}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Monkeys.iOS</RootNamespace>
-    <AssemblyName>Monkeys.iOS</AssemblyName>
+    <RootNamespace>ForgetMeNot.iOS</RootNamespace>
+    <AssemblyName>ForgetMeNot.iOS</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
