@@ -19,7 +19,7 @@ jobs:
         dotnet-version: '5.0.x'
 
     - name: Install dependencies
-      run: nuget restore /src/ForgetMeNot.sln
+      run: nuget restore src/ForgetMeNot.sln
 
     - name: Build
-      run: msbuild /src/ForgetMeNot.sln /t:PackageForAndroid /p:Configuration=Debug
+      run: msbuild src/ForgetMeNot.sln /t:PackageForAndroid /p:Configuration=Debug
