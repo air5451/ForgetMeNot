@@ -17,8 +17,8 @@ namespace ForgetMeNot.App.Droid
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
             DependencyService.Register<IParentWindowLocatorService, AndroidParentWindowLocatorService>();
 
-            TabLayoutResource = Resource.Layout.Tabbar;
-            ToolbarResource = Resource.Layout.Toolbar;
+            //TabLayoutResource = Resource.Layout.Tabbar;
+            //ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
 
